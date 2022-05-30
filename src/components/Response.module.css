@@ -1,0 +1,29 @@
+/* .quizAnswer {
+  font-weight: bold;
+  display: inline-block;
+} */
+.answer {
+  width: 48%;
+  background: #fff;
+  border: 2px solid #0094da;
+  min-height: 70px;
+  cursor: pointer;
+  margin-bottom: 30px;
+  display: flex;
+}
+.answerTxt {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.disabled-answer {
+  pointer-events: none;
+}
+.wrong-answer {
+  border: 2px solid #dc0a0a;
+}
+.correct-answer {
+  border: 2px solid #1ea55b;
+}

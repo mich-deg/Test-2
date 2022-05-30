@@ -1,0 +1,29 @@
+.input label {
+  position: absolute;
+  width: 595px;
+  height: 46px;
+  left: calc(50% - 595px / 2 + 0.5px);
+  top: calc(50% - 46px / 2 - 42px);
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 200;
+  font-size: 38.4px;
+  line-height: 46px;
+  color: #ffffff;
+}
+
+.input input {
+  position: absolute;
+  width: 435px;
+  height: 64px;
+  left: calc(50% - 435px / 2 - 87.5px);
+  top: calc(50% - 64px / 2 + 41px);
+  background: #ffffff;
+  border-radius: 12px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 38.4px;
+  line-height: 46px;
+  color: #000000;
+}
