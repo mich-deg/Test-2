@@ -9,7 +9,10 @@ const ShowScore = () => {
   const [quizState, dispatch] = useContext(QuizContext);
   return (
     <Fragment>
-      <p className={classes.congrats}>Congratulations</p>
+      {quizState.scoreCount >= 1 && (
+        <p className={classes.congrats}>Congratulations</p>
+      )}
+
       <Card
         className={classes.score}
         // style={{ background: quizState.scoreCount >= 1 ? "green" : "black" }}

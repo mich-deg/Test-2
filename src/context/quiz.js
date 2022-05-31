@@ -58,6 +58,7 @@ const reducer = (state, action) => {
   if (action.type === "RESTART") {
     return initialState;
   }
+
   return state;
 };
 
