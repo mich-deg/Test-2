@@ -17,7 +17,14 @@ const App = () => {
           <Instructions />
         </div>
       </div> */}
-      {!quizState.showScore && <Question />}
+      {!quizState.showScore && (
+        <div>
+          <Question />
+          {/* {quizState.currentAnswer && (
+            <div onClick={() => dispatch({ type: "SKIP" })}>Skip</div>
+          )} */}
+        </div>
+      )}
       {quizState.showScore && <ShowScore />}
     </div>
   );

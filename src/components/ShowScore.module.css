@@ -1,27 +1,30 @@
+.container_score {
+  display: flex;
+  flex-direction: column;
+}
 .score {
+  display: flex;
+  flex-direction: column;
   color: white;
 }
 .scoreText {
   margin: 1rem;
-  list-style: none;
   display: flex;
   align-items: center;
-  margin-left: 4rem;
   font-size: 2rem;
-  justify-content: flex-start;
+  justify-content: space-around;
 }
 .scoreBtn {
   text-align: center;
 }
 .scoreCnt {
   font-size: 8rem;
-  text-align: center;
-  margin-left: 5rem;
-  justify-content: right;
 }
 .congrats {
   font-size: 2rem;
-  position: absolute;
-  left: calc(50% - 774px / 2);
-  top: 8rem;
+  margin: 1rem 4rem;
+}
+
+.cardColor {
+  background: green;
 }

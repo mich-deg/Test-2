@@ -11,12 +11,14 @@ const Response = ({
   const isCorrectAnswer = currentAnswer && answerText === correctAnswer;
   const isWrongAnswer =
     currentAnswer === answerText && currentAnswer !== correctAnswer;
-  const correctAnswerClass = isCorrectAnswer ? "correct-answer" : "";
-  const wrongAnswerClass = isWrongAnswer ? "wrong-answer" : "";
-  const disabledClass = currentAnswer ? "disabled-answer" : "";
+
   return (
     <div
-      className={`answer ${correctAnswerClass} ${wrongAnswerClass} ${disabledClass}`}
+      className={`${classes.answer} ${
+        isCorrectAnswer && classes["correct-answer"]
+      } ${isWrongAnswer && classes["wrong-answer"]} ${
+        currentAnswer && classes["disabled-answer"]
+      }`}
       onClick={() => onSelectAnswer(answerText)}
     >
       <div className={classes.answerTxt}>{answerText}</div>

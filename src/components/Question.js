@@ -65,23 +65,6 @@ const Question = () => {
     deadline.setSeconds(deadline.getSeconds() + 10);
     return deadline;
   };
-
-  useEffect(() => {
-    clearTimer(getDeadlineTime());
-
-    // if (quizState.currentQuestionIdx + 1 <= quizState.questions.length) {
-    //   setTimeout(() => {
-    //     dispatch({ type: "SKIP" });
-    //   }, 10000);
-    // }
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, []);
-
   const skipHandler = () => {
     dispatch({ type: "SKIP" });
 
@@ -92,33 +75,42 @@ const Question = () => {
   };
 
   const onSelectAnswerHandler = (answerText) => {
+    setTimeout(() => {
+      dispatch({ type: "SELECT_ANSWER", payload: answerText });
+    }, 3000);
+
     if (quizState.currentQuestionIdx + 1 <= quizState.questions.length) {
       setTimeout(() => {
         dispatch({ type: "SKIP" });
-      }, 2000);
+      }, 5000);
     }
-    dispatch({ type: "SELECT_ANSWER", payload: answerText });
-    clearTimer(getDeadlineTime());
   };
+
+  useEffect(() => {
+    clearTimer(getDeadlineTime());
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, []);
 
   return (
     <Fragment>
-      <div>
-        <ul className={classes.questionInfo}>
-          <li>Question {quizState.currentQuestionIdx + 1}</li>
-          <li id={classes.qType}>{currentQuestion.questionType}</li>
-          <li>Score {quizState.scoreCount}</li>
-          <li>Timer {timer}</li>
-        </ul>
-      </div>
-      <Card>
-        <div>
-          <p className={classes.question}>{currentQuestion.question}</p>
-          <hr></hr>
+      <div className={classes.container}>
+        <div className={classes.questionInfo}>
+          <p>Question {quizState.currentQuestionIdx + 1}</p>
+          <p id={classes.qType}>{currentQuestion.questionType}</p>
+          <p>Score {quizState.scoreCount}</p>
+          <p>Timer {timer}</p>
         </div>
-        <div>
-          <ul className={classes.answers}>
-            <li className={classes.answer}>
+        <Card>
+          <div>
+            <p className={classes.question}>{currentQuestion.question}</p>
+            <hr></hr>
+          </div>
+          <div className={classes.container_answers}>
+            <div className={classes.answers}>
               {quizState.answers.map((answer, index) => (
                 <Response
                   answerText={answer}
@@ -129,13 +121,13 @@ const Question = () => {
                   onSelectAnswer={onSelectAnswerHandler}
                 />
               ))}
-            </li>
-          </ul>
-        </div>
-        <div className={classes.skipBtn}>
-          <Button onClick={skipHandler}>Skip</Button>
-        </div>
-      </Card>
+            </div>
+            <div className={classes.skipBtn}>
+              <Button onClick={skipHandler}>Skip</Button>
+            </div>
+          </div>
+        </Card>
+      </div>
     </Fragment>
   );
 };
