@@ -65,6 +65,7 @@ const Question = () => {
     deadline.setSeconds(deadline.getSeconds() + 10);
     return deadline;
   };
+
   const skipHandler = () => {
     dispatch({ type: "SKIP" });
 
@@ -75,16 +76,41 @@ const Question = () => {
   };
 
   const onSelectAnswerHandler = (answerText) => {
-    setTimeout(() => {
+    const identifier = setTimeout(() => {
       dispatch({ type: "SELECT_ANSWER", payload: answerText });
     }, 3000);
 
     if (quizState.currentQuestionIdx + 1 <= quizState.questions.length) {
-      setTimeout(() => {
+      const identifier = setTimeout(() => {
         dispatch({ type: "SKIP" });
       }, 5000);
+
+      return () => {
+        clearTimeout(identifier);
+      };
     }
+    return () => {
+      clearTimeout(identifier);
+    };
   };
+
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      console.log("Hello");
+      if (quizState.currentQuestionIdx + 1 <= quizState.questions.length)
+        dispatch({ type: "SKIP" });
+    }, 10000);
+
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    clearTimer(getDeadlineTime());
+
+    return () => {
+      console.log("Bye");
+      clearTimeout(identifier);
+    };
+  }, [dispatch, quizState.currentQuestionIdx, quizState.questions.length]);
 
   useEffect(() => {
     clearTimer(getDeadlineTime());
